@@ -398,6 +398,23 @@
       .esn{font-size:52px}
       .cgrid2{gap:32px}
     }
+    /* ── LOADER ── */
+    #page-loader{
+      position:fixed;inset:0;z-index:10000;
+      background:var(--dark);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+      transition:opacity .55s ease, visibility .55s ease;
+    }
+    #page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .ld-logo{width:130px;height:auto;animation:lpulse 1.8s ease-in-out infinite}
+    .ld-name{
+      font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;
+      letter-spacing:.28em;text-transform:uppercase;color:rgba(201,168,76,.55);
+    }
+    .ld-bar{width:160px;height:2px;background:rgba(201,168,76,.15);overflow:hidden}
+    .ld-fill{height:100%;background:var(--gold);animation:ldfill 1.4s ease-in-out infinite}
+    @keyframes ldfill{0%{width:0%;margin-left:0}60%{width:100%;margin-left:0}100%{width:0%;margin-left:100%}}
+
     @media(max-width:380px){
       .hero-title{font-size:clamp(44px,12vw,70px)}
       .stats-grid{grid-template-columns:1fr 1fr}
@@ -406,6 +423,13 @@
   </style>
 </head>
 <body>
+
+<!-- LOADER -->
+<div id="page-loader">
+  <img src="./imagen_institucional/publicidad/propuesta_logo_charly.png" alt="Charly Táctico TEDAX" class="ld-logo">
+  <div class="ld-name">Academia Pre-Cadetes · Tarapoto</div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
 
 <!-- NAV -->
 <nav id="main-nav">
@@ -1035,6 +1059,20 @@ const nav = document.getElementById('main-nav');
 window.addEventListener('scroll', () => {
   nav.style.background = window.scrollY > 80 ? 'rgba(8,12,16,.98)' : 'rgba(8,12,16,.95)';
 }, { passive: true });
+
+// Loader — espera fuentes + mínimo 1s para evitar flash de layout
+(function(){
+  const loader = document.getElementById('page-loader');
+  let fontsOk = false, timeOk = false;
+  function tryHide(){
+    if(fontsOk && timeOk){
+      loader.classList.add('hidden');
+      setTimeout(()=>loader.remove(), 600);
+    }
+  }
+  document.fonts.ready.then(()=>{ fontsOk=true; tryHide(); });
+  setTimeout(()=>{ timeOk=true; tryHide(); }, 1000);
+})();
 
 // Video sound toggle
 function toggleVidSound() {
