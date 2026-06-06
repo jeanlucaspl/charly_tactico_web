@@ -243,7 +243,7 @@
     .esl{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--white)}
     .egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .ecard{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--dark2)}
-    .ecard img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .5s}
+    .ecard img{width:100%;height:100%;object-fit:cover;object-position:center 15%;transition:transform .5s}
     .ecard:hover img{transform:scale(1.07)}
     .eov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,16,.96) 0%,rgba(8,12,16,.25) 60%,transparent 100%)}
     .einf{position:absolute;bottom:0;left:0;right:0;padding:22px 18px}
@@ -403,7 +403,7 @@
     .cer-intro{font-size:15px;color:var(--muted);max-width:640px;line-height:1.75;margin-bottom:48px}
     .cer-grid{display:grid;grid-template-columns:1fr 320px;gap:14px;margin-bottom:14px}
     .cer-main{position:relative;overflow:hidden}
-    .cer-main img{width:100%;display:block;object-fit:cover;height:340px;object-position:center top}
+    .cer-main img{width:100%;display:block;object-fit:cover;height:340px;object-position:center 35%}
     .cer-caption{
       position:absolute;bottom:0;left:0;right:0;
       background:linear-gradient(to top,rgba(8,12,16,.9) 0%,transparent 100%);
@@ -413,7 +413,7 @@
     }
     .cer-side{display:grid;grid-template-columns:1fr 1fr;gap:6px}
     .cer-thumb{overflow:hidden}
-    .cer-thumb img{width:100%;display:block;object-fit:cover;height:165px;object-position:top center;transition:transform .4s}
+    .cer-thumb img{width:100%;display:block;object-fit:cover;height:165px;object-position:center 20%;transition:transform .4s}
     .cer-thumb:hover img{transform:scale(1.06)}
     .cer-bottom{display:grid;grid-template-columns:1fr 300px;gap:14px;align-items:stretch}
     .cer-vid-wrap{position:relative;overflow:hidden;background:#000}
@@ -421,10 +421,18 @@
     .cer-vid-label{
       position:absolute;bottom:0;left:0;right:0;
       background:linear-gradient(to top,rgba(8,12,16,.88) 0%,transparent 100%);
-      padding:16px 14px 12px;
+      padding:44px 14px 12px;
       font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;
       letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
     }
+    .cer-snd-btn{
+      position:absolute;top:12px;right:12px;z-index:2;
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(8,12,16,.7);border:1px solid rgba(201,168,76,.5);color:var(--gold);
+      padding:8px 16px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.1em;
+      cursor:pointer;transition:background .2s,border-color .2s;
+    }
+    .cer-snd-btn:hover,.cer-snd-btn.active{background:var(--gold);color:#080c10;border-color:var(--gold)}
     .cer-stats{display:flex;flex-direction:column;gap:12px}
     .cer-stat{
       background:var(--green);border:2px solid var(--gold);border-top:3px solid var(--gold);
@@ -440,17 +448,45 @@
     .cer-feat p{font-size:13px;color:var(--muted);line-height:1.65}
     .cer-panoramas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
     .cer-pan{overflow:hidden}
-    .cer-pan img{width:100%;display:block;object-fit:cover;height:160px;object-position:center top;transition:transform .4s}
+    .cer-pan img{width:100%;display:block;object-fit:cover;height:160px;object-position:center 30%;transition:transform .4s}
     .cer-pan:hover img{transform:scale(1.05)}
+    /* ── LIGHTBOX ── */
+    #lightbox{
+      display:none;position:fixed;inset:0;z-index:20000;
+      background:rgba(0,0,0,.95);
+      align-items:center;justify-content:center;
+      flex-direction:column;gap:14px;
+      cursor:zoom-out;
+    }
+    #lightbox.open{display:flex}
+    #lightbox img{
+      max-width:94vw;max-height:86vh;
+      object-fit:contain;cursor:default;
+      box-shadow:0 0 80px rgba(0,0,0,.9);
+    }
+    #lb-close{
+      position:absolute;top:16px;right:20px;
+      width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+      background:rgba(201,168,76,.15);border:1px solid var(--gold);
+      color:var(--gold);font-size:24px;line-height:1;cursor:pointer;
+      font-family:'Bebas Neue',sans-serif;letter-spacing:0;
+    }
+    #lb-caption{
+      font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;
+      letter-spacing:.18em;text-transform:uppercase;color:rgba(106,125,144,.8);
+      text-align:center;max-width:80vw;
+    }
+    .lb{cursor:zoom-in}
     @media(max-width:900px){
       .cer-grid,.cer-bottom{grid-template-columns:1fr}
       .cer-panoramas{grid-template-columns:repeat(2,1fr)}
+      .cer-main img{height:260px}
     }
     @media(max-width:520px){
       .cer-side{grid-template-columns:1fr 1fr}
-      .cer-thumb img{height:120px}
+      .cer-thumb img{height:130px;object-position:center 20%}
       .cer-panoramas{grid-template-columns:1fr 1fr}
-      .cer-pan img{height:120px}
+      .cer-pan img{height:130px}
     }
 
     /* ── LOADER ── */
@@ -819,7 +855,7 @@
     </div>
     <div class="egrid">
       <div class="ecard fade-up">
-        <img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" alt="Ingresante PNP con diploma">
+        <img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" alt="Ingresante PNP con diploma" class="lb" onclick="openLb(this)">
         <div class="eov"></div>
         <div class="einf">
           <span class="ebadge">
@@ -830,7 +866,7 @@
         </div>
       </div>
       <div class="ecard fade-up" style="transition-delay:.12s">
-        <img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" alt="Alumna ingresante PNP">
+        <img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" alt="Alumna ingresante PNP" class="lb" onclick="openLb(this)">
         <div class="eov"></div>
         <div class="einf">
           <span class="ebadge" style="background:var(--lime);color:#080c10">
@@ -841,7 +877,7 @@
         </div>
       </div>
       <div class="ecard fade-up" style="transition-delay:.24s">
-        <img src="./nueva_imagenes_videos_ceremonia/foto_alumno_con_diploma_y_familiares.jpeg" alt="Egresado con su familia">
+        <img src="./nueva_imagenes_videos_ceremonia/foto_alumno_con_diploma_y_familiares.jpeg" alt="Egresado con su familia" class="lb" onclick="openLb(this)">
         <div class="eov"></div>
         <div class="einf">
           <span class="ebadge">
@@ -877,21 +913,26 @@
     <!-- foto principal + miniaturas -->
     <div class="cer-grid fade-up">
       <div class="cer-main">
-        <img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director.jpeg" alt="Promoción egresados Charly Táctico 2026">
+        <img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director.jpeg" alt="Promoción egresados Charly Táctico 2026" class="lb" onclick="openLb(this)">
         <div class="cer-caption">Promoción Charly Táctico TEDAX — Egresados 2026</div>
       </div>
       <div class="cer-side">
-        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director.jpeg" loading="lazy" alt="Alumnas egresadas PNP"></div>
-        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_poniendo_nedalla_a_alumno.jpeg" loading="lazy" alt="Condecoración al mérito"></div>
-        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" loading="lazy" alt="Alumna recibe diploma"></div>
-        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" loading="lazy" alt="Ingresante con diploma"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director.jpeg" loading="lazy" alt="Alumnas egresadas PNP" class="lb" onclick="openLb(this)"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_poniendo_nedalla_a_alumno.jpeg" loading="lazy" alt="Condecoración al mérito" class="lb" onclick="openLb(this)"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" loading="lazy" alt="Alumna recibe diploma" class="lb" onclick="openLb(this)"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" loading="lazy" alt="Ingresante con diploma" class="lb" onclick="openLb(this)"></div>
       </div>
     </div>
 
     <!-- video + estadísticas -->
     <div class="cer-bottom fade-up">
       <div class="cer-vid-wrap">
-        <video src="./nueva_imagenes_videos_ceremonia/estudiantes_respondiendo_al_unisono_al%20llamado_del_director.mp4" autoplay muted loop playsinline></video>
+        <video id="vid-cer" src="./nueva_imagenes_videos_ceremonia/estudiantes_respondiendo_al_unisono_al%20llamado_del_director.mp4" autoplay muted loop playsinline></video>
+        <button id="cer-snd-btn" onclick="toggleCerVidSound()" class="cer-snd-btn">
+          <svg id="cer-ico-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/></svg>
+          <svg id="cer-ico-vol" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53L6.75 15.75H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/></svg>
+          <span id="cer-btn-txt">Activar Sonido</span>
+        </button>
         <div class="cer-vid-label">Respuesta al llamado del director — formación y disciplina en unísono</div>
       </div>
       <div class="cer-stats">
@@ -913,9 +954,9 @@
 
     <!-- más panorámicas -->
     <div class="cer-panoramas fade-up">
-      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director2.jpeg" loading="lazy" alt="Egresados con director"></div>
-      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director2.jpeg" loading="lazy" alt="Alumnas egresadas"></div>
-      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_compañerismo_en_actividad_extra_con_ingresantes.jpeg" loading="lazy" alt="Compañerismo con ingresantes"></div>
+      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director2.jpeg" loading="lazy" alt="Egresados con director" class="lb" onclick="openLb(this)"></div>
+      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director2.jpeg" loading="lazy" alt="Alumnas egresadas" class="lb" onclick="openLb(this)"></div>
+      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_compañerismo_en_actividad_extra_con_ingresantes.jpeg" loading="lazy" alt="Compañerismo con ingresantes" class="lb" onclick="openLb(this)"></div>
     </div>
   </div>
 </section>
@@ -1143,6 +1184,13 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLb(event)">
+  <div id="lb-close" onclick="closeLb()">✕</div>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-caption"></div>
+</div>
+
 <!-- WHATSAPP FAB -->
 <a href="https://wa.me/51929787678?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20inscripciones" target="_blank" class="wa-fab" title="Contáctanos por WhatsApp">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1200,6 +1248,42 @@ window.addEventListener('scroll', () => {
   document.fonts.ready.then(()=>{ fontsOk=true; tryHide(); });
   setTimeout(()=>{ timeOk=true; tryHide(); }, 1000);
 })();
+
+// Lightbox
+function openLb(img) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lb-caption').textContent = img.alt;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb(e) {
+  if (e && e.target.id === 'lb-img') return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+// Video sound toggle — sección ceremonia
+function toggleCerVidSound() {
+  const v = document.getElementById('vid-cer');
+  const btn = document.getElementById('cer-snd-btn');
+  const icoMute = document.getElementById('cer-ico-mute');
+  const icoVol = document.getElementById('cer-ico-vol');
+  const txt = document.getElementById('cer-btn-txt');
+  v.muted = !v.muted;
+  if (!v.muted) {
+    v.loop = false; v.currentTime = 0; v.play();
+    btn.classList.add('active');
+    icoMute.style.display = 'none'; icoVol.style.display = 'block';
+    txt.textContent = 'Sonido Activo';
+  } else {
+    v.loop = true;
+    btn.classList.remove('active');
+    icoMute.style.display = 'block'; icoVol.style.display = 'none';
+    txt.textContent = 'Activar Sonido';
+  }
+}
 
 // Video sound toggle
 function toggleVidSound() {
