@@ -450,6 +450,20 @@
     .cer-pan{overflow:hidden}
     .cer-pan img{width:100%;display:block;object-fit:cover;height:160px;object-position:center 30%;transition:transform .4s}
     .cer-pan:hover img{transform:scale(1.05)}
+    /* posiciones individuales por imagen de ceremonia */
+    .op-medal      { object-position: center 45% !important }  /* condecoración */
+    .op-alumna-dip { object-position: center 20% !important }  /* alumna recibe diploma */
+    .op-alumno-dip { object-position: center 20% !important }  /* ingresante con diploma */
+    .op-alumnas-pano{ object-position: center 35% !important } /* alumnas egresadas (cer-thumb desktop) */
+    .op-comp       { object-position: center 45% !important }  /* compañerismo con ingresantes (cer-pan desktop) */
+    @media(max-width:640px){
+      .op-medal      { object-position: center 50% !important }
+      .op-alumna-dip { object-position: center 38% !important }
+      .op-alumno-dip { object-position: center 55% !important }
+      .op-alumnas-pano{ object-position: center 20% !important } /* OK en mobile */
+      .op-comp       { object-position: center 30% !important }  /* OK en mobile */
+    }
+
     /* ── LIGHTBOX ── */
     #lightbox{
       display:none;position:fixed;inset:0;z-index:20000;
@@ -917,10 +931,10 @@
         <div class="cer-caption">Promoción Charly Táctico TEDAX — Egresados 2026</div>
       </div>
       <div class="cer-side">
-        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director.jpeg" loading="lazy" alt="Alumnas egresadas PNP" class="lb" onclick="openLb(this)"></div>
-        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_poniendo_nedalla_a_alumno.jpeg" loading="lazy" alt="Condecoración al mérito" class="lb" onclick="openLb(this)"></div>
-        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" loading="lazy" alt="Alumna recibe diploma" class="lb" onclick="openLb(this)"></div>
-        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" loading="lazy" alt="Ingresante con diploma" class="lb" onclick="openLb(this)"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director.jpeg" loading="lazy" alt="Alumnas egresadas PNP" class="lb op-alumnas-pano" onclick="openLb(this)"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_poniendo_nedalla_a_alumno.jpeg" loading="lazy" alt="Condecoración al mérito" class="lb op-medal" onclick="openLb(this)"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" loading="lazy" alt="Alumna recibe diploma" class="lb op-alumna-dip" onclick="openLb(this)"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" loading="lazy" alt="Ingresante con diploma" class="lb op-alumno-dip" onclick="openLb(this)"></div>
       </div>
     </div>
 
@@ -956,7 +970,7 @@
     <div class="cer-panoramas fade-up">
       <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director2.jpeg" loading="lazy" alt="Egresados con director" class="lb" onclick="openLb(this)"></div>
       <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director2.jpeg" loading="lazy" alt="Alumnas egresadas" class="lb" onclick="openLb(this)"></div>
-      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_compañerismo_en_actividad_extra_con_ingresantes.jpeg" loading="lazy" alt="Compañerismo con ingresantes" class="lb" onclick="openLb(this)"></div>
+      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_compañerismo_en_actividad_extra_con_ingresantes.jpeg" loading="lazy" alt="Compañerismo con ingresantes" class="lb op-comp" onclick="openLb(this)"></div>
     </div>
   </div>
 </section>
@@ -1264,6 +1278,30 @@ function closeLb(e) {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
+// Silencia el video principal (helper)
+function _muteMain() {
+  const v = document.getElementById('vid-main');
+  if (!v.muted) {
+    v.muted = true; v.loop = true;
+    document.getElementById('vid-sound-btn').classList.remove('active');
+    document.getElementById('vid-ico-mute').style.display = 'block';
+    document.getElementById('vid-ico-vol').style.display = 'none';
+    document.getElementById('vid-btn-txt').textContent = 'Activar Sonido';
+    document.getElementById('vid-muted-badge').style.display = 'flex';
+  }
+}
+// Silencia el video de ceremonia (helper)
+function _muteCer() {
+  const v = document.getElementById('vid-cer');
+  if (!v.muted) {
+    v.muted = true; v.loop = true;
+    document.getElementById('cer-snd-btn').classList.remove('active');
+    document.getElementById('cer-ico-mute').style.display = 'block';
+    document.getElementById('cer-ico-vol').style.display = 'none';
+    document.getElementById('cer-btn-txt').textContent = 'Activar Sonido';
+  }
+}
+
 // Video sound toggle — sección ceremonia
 function toggleCerVidSound() {
   const v = document.getElementById('vid-cer');
@@ -1273,6 +1311,7 @@ function toggleCerVidSound() {
   const txt = document.getElementById('cer-btn-txt');
   v.muted = !v.muted;
   if (!v.muted) {
+    _muteMain(); // silencia el otro video
     v.loop = false; v.currentTime = 0; v.play();
     btn.classList.add('active');
     icoMute.style.display = 'none'; icoVol.style.display = 'block';
@@ -1297,6 +1336,7 @@ function toggleVidSound() {
   v.muted = !v.muted;
 
   if (!v.muted) {
+    _muteCer(); // silencia el otro video
     v.loop = false;
     v.currentTime = 0;
     v.play();
