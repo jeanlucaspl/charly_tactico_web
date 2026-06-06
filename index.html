@@ -398,6 +398,61 @@
       .esn{font-size:52px}
       .cgrid2{gap:32px}
     }
+    /* ── CEREMONIA ── */
+    #ceremonia{background:var(--dark)}
+    .cer-intro{font-size:15px;color:var(--muted);max-width:640px;line-height:1.75;margin-bottom:48px}
+    .cer-grid{display:grid;grid-template-columns:1fr 320px;gap:14px;margin-bottom:14px}
+    .cer-main{position:relative;overflow:hidden}
+    .cer-main img{width:100%;display:block;object-fit:cover;height:340px;object-position:center top}
+    .cer-caption{
+      position:absolute;bottom:0;left:0;right:0;
+      background:linear-gradient(to top,rgba(8,12,16,.9) 0%,transparent 100%);
+      padding:18px 16px 14px;
+      font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--gold);
+    }
+    .cer-side{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .cer-thumb{overflow:hidden}
+    .cer-thumb img{width:100%;display:block;object-fit:cover;height:165px;object-position:top center;transition:transform .4s}
+    .cer-thumb:hover img{transform:scale(1.06)}
+    .cer-bottom{display:grid;grid-template-columns:1fr 300px;gap:14px;align-items:stretch}
+    .cer-vid-wrap{position:relative;overflow:hidden;background:#000}
+    .cer-vid-wrap video{width:100%;display:block;object-fit:cover;height:260px;object-position:center 30%}
+    .cer-vid-label{
+      position:absolute;bottom:0;left:0;right:0;
+      background:linear-gradient(to top,rgba(8,12,16,.88) 0%,transparent 100%);
+      padding:16px 14px 12px;
+      font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;
+      letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    }
+    .cer-stats{display:flex;flex-direction:column;gap:12px}
+    .cer-stat{
+      background:var(--green);border:2px solid var(--gold);border-top:3px solid var(--gold);
+      padding:20px 28px;text-align:center;flex:1;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .cer-feat{
+      background:var(--dark2);border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--gold);
+      padding:18px 20px;flex:1;display:flex;flex-direction:column;gap:8px;
+    }
+    .cer-feat svg{flex-shrink:0}
+    .cer-feat strong{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--white);letter-spacing:.05em}
+    .cer-feat p{font-size:13px;color:var(--muted);line-height:1.65}
+    .cer-panoramas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+    .cer-pan{overflow:hidden}
+    .cer-pan img{width:100%;display:block;object-fit:cover;height:160px;object-position:center top;transition:transform .4s}
+    .cer-pan:hover img{transform:scale(1.05)}
+    @media(max-width:900px){
+      .cer-grid,.cer-bottom{grid-template-columns:1fr}
+      .cer-panoramas{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:520px){
+      .cer-side{grid-template-columns:1fr 1fr}
+      .cer-thumb img{height:120px}
+      .cer-panoramas{grid-template-columns:1fr 1fr}
+      .cer-pan img{height:120px}
+    }
+
     /* ── LOADER ── */
     #page-loader{
       position:fixed;inset:0;z-index:10000;
@@ -554,15 +609,15 @@
 <section id="video-sec">
   <div class="vid-wrap">
     <video id="vid-main"
-      src="./imagen_institucional/actividades/video_actividad_importante.mp4"
+      src="./nueva_imagenes_videos_ceremonia/alumnos_cantando_himno_del_estudiante_policial.mp4"
       autoplay muted loop playsinline
-      poster="./imagen_institucional/compa%C3%B1erismo/alumnos2.jpg">
+      poster="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director.jpeg">
     </video>
     <div class="vid-overlay">
       <div class="vid-text fade-up">
-        <div class="sec-eye">La academia en vivo</div>
+        <div class="sec-eye">Ceremonia de Egresados 2026</div>
         <h2 class="vid-ttl">Disciplina que<br><span>se escucha</span></h2>
-        <p class="vid-desc">La voz de nuestros cadetes al unísono es la prueba de lo que construimos cada día. Formación real, esfuerzo real, resultados reales.</p>
+        <p class="vid-desc">El himno del estudiante policial cantado en unísono por nuestra última promoción de egresados. Esta es la prueba de lo que construimos cada día: disciplina, lealtad y vocación de servicio.</p>
         <button id="vid-sound-btn" onclick="toggleVidSound()" class="btn-sound">
           <svg id="vid-ico-mute" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/>
@@ -764,36 +819,36 @@
     </div>
     <div class="egrid">
       <div class="ecard fade-up">
-        <img src="./imagen_institucional/casos%20de%20exito/alumno-caso-exito.jpg" alt="Ingresante PNP">
+        <img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" alt="Ingresante PNP con diploma">
         <div class="eov"></div>
         <div class="einf">
           <span class="ebadge">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#080c10" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
             Ingresante PNP
           </span>
-          <p class="equote">"Muchas bendiciones hijo" — el orgullo de la familia el día de la graduación</p>
+          <p class="equote">Diploma en mano, un sueño cumplido. El esfuerzo de meses convertido en realidad.</p>
         </div>
       </div>
       <div class="ecard fade-up" style="transition-delay:.12s">
-        <img src="./imagen_institucional/casos%20de%20exito/alumno-charly-tactico-caso-exito.jpg" alt="Cadete PNP">
+        <img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" alt="Alumna ingresante PNP">
         <div class="eov"></div>
         <div class="einf">
-          <span class="ebadge">
+          <span class="ebadge" style="background:var(--lime);color:#080c10">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#080c10" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-            Cadete PNP
+            Cadete PNP — Alumna
           </span>
-          <p class="equote">Uniforme de gala. El sueño hecho realidad gracias a la disciplina y el trabajo constante.</p>
+          <p class="equote">Nuestras alumnas también alcanzan la PNP. Disciplina sin distinción de género.</p>
         </div>
       </div>
       <div class="ecard fade-up" style="transition-delay:.24s">
-        <img src="./imagen_institucional/casos%20de%20exito/caso-alumno-exito.jpg" alt="Ingresante PNP">
+        <img src="./nueva_imagenes_videos_ceremonia/foto_alumno_con_diploma_y_familiares.jpeg" alt="Egresado con su familia">
         <div class="eov"></div>
         <div class="einf">
           <span class="ebadge">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#080c10" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-            Ingresante PNP
+            Orgullo familiar
           </span>
-          <p class="equote">"Nada de esto fue fácil, pero todo se logra con esfuerzo. Gracias familia, los amo" — Cristian Ríos</p>
+          <p class="equote">El día más esperado. Toda la familia celebra junto al nuevo cadete de la PNP.</p>
         </div>
       </div>
     </div>
@@ -811,6 +866,60 @@
   </div>
 </section>
 
+<!-- CEREMONIA DE EGRESADOS -->
+<section id="ceremonia">
+  <div class="container">
+    <div class="sec-eye fade-up">Promoción 2026</div>
+    <h2 class="sec-ttl fade-up">Ceremonia de<br><span style="color:var(--gold)">Egresados</span></h2>
+    <div class="sec-div fade-up"></div>
+    <p class="cer-intro fade-up">Nuestra última promoción lo logró. Hombres y mujeres con vocación de servicio que superaron cada prueba de la pre-admisión PNP. Esta es su historia.</p>
+
+    <!-- foto principal + miniaturas -->
+    <div class="cer-grid fade-up">
+      <div class="cer-main">
+        <img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director.jpeg" alt="Promoción egresados Charly Táctico 2026">
+        <div class="cer-caption">Promoción Charly Táctico TEDAX — Egresados 2026</div>
+      </div>
+      <div class="cer-side">
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director.jpeg" loading="lazy" alt="Alumnas egresadas PNP"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_poniendo_nedalla_a_alumno.jpeg" loading="lazy" alt="Condecoración al mérito"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" loading="lazy" alt="Alumna recibe diploma"></div>
+        <div class="cer-thumb"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" loading="lazy" alt="Ingresante con diploma"></div>
+      </div>
+    </div>
+
+    <!-- video + estadísticas -->
+    <div class="cer-bottom fade-up">
+      <div class="cer-vid-wrap">
+        <video src="./nueva_imagenes_videos_ceremonia/estudiantes_respondiendo_al_unisono_al%20llamado_del_director.mp4" autoplay muted loop playsinline></video>
+        <div class="cer-vid-label">Respuesta al llamado del director — formación y disciplina en unísono</div>
+      </div>
+      <div class="cer-stats">
+        <div class="cer-stat">
+          <span class="esn">+50</span>
+          <span class="esl">Egresados<br>esta promoción</span>
+        </div>
+        <div class="cer-stat" style="border-color:var(--lime);border-top-color:var(--lime)">
+          <span class="esn" style="color:var(--lime)">100%</span>
+          <span class="esl">Aspirantes<br>a la PNP</span>
+        </div>
+        <div class="cer-feat">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+          <strong>Hombres y Mujeres</strong>
+          <p>Formamos candidatos de ambos géneros con igual exigencia y dedicación hacia la PNP.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- más panorámicas -->
+    <div class="cer-panoramas fade-up">
+      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director2.jpeg" loading="lazy" alt="Egresados con director"></div>
+      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director2.jpeg" loading="lazy" alt="Alumnas egresadas"></div>
+      <div class="cer-pan"><img src="./nueva_imagenes_videos_ceremonia/foto_compañerismo_en_actividad_extra_con_ingresantes.jpeg" loading="lazy" alt="Compañerismo con ingresantes"></div>
+    </div>
+  </div>
+</section>
+
 <!-- GALERÍA REEL -->
 <section id="galeria">
   <div class="container">
@@ -823,6 +932,11 @@
     <!-- FILA 1: imágenes landscape × 2 para bucle infinito -->
     <div class="reel-row" title="Pasa el cursor para pausar">
       <div class="reel-track reel-track-l">
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director3.jpeg" loading="lazy" alt="Egresados Charly Táctico 2026"></div>
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director.jpeg" loading="lazy" alt="Alumnas egresadas PNP"></div>
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/alumnos_actividades_extras_de_tiro.jpeg" loading="lazy" alt="Actividad de tiro Charly Táctico"></div>
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director4.jpeg" loading="lazy" alt="Promoción 2026 con director"></div>
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director5.jpeg" loading="lazy" alt="Ceremonia de egresados"></div>
         <div class="reel-land"><img src="./imagen_institucional/compa%C3%B1erismo/alumnos2.jpg" loading="lazy" alt="Familia táctica Charly Táctico"></div>
         <div class="reel-land"><img src="./imagen_institucional/compa%C3%B1erismo/alumnos.jpg" loading="lazy" alt="Compañerismo Charly Táctico"></div>
         <div class="reel-land"><img src="./imagen_institucional/compa%C3%B1erismo/imagen_de_fondo_principal.jpeg" loading="lazy" alt="Academia Pre-Cadetes Charly Táctico"></div>
@@ -837,6 +951,11 @@
         <div class="reel-land"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-15%20at%2000.00.46%20%283%29.jpeg" loading="lazy" alt="Actividad táctica"></div>
         <div class="reel-land"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-15%20at%2000.00.47%20%282%29.jpeg" loading="lazy" alt="Entrenamiento Charly Táctico"></div>
         <!-- copia 2 para bucle infinito -->
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director3.jpeg" loading="lazy" alt=""></div>
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnas_con_diploma_y_director.jpeg" loading="lazy" alt=""></div>
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/alumnos_actividades_extras_de_tiro.jpeg" loading="lazy" alt=""></div>
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director4.jpeg" loading="lazy" alt=""></div>
+        <div class="reel-land"><img src="./nueva_imagenes_videos_ceremonia/foto_panoramica_de_alumnos_con_diploma_y_director5.jpeg" loading="lazy" alt=""></div>
         <div class="reel-land"><img src="./imagen_institucional/compa%C3%B1erismo/alumnos2.jpg" loading="lazy" alt=""></div>
         <div class="reel-land"><img src="./imagen_institucional/compa%C3%B1erismo/alumnos.jpg" loading="lazy" alt=""></div>
         <div class="reel-land"><img src="./imagen_institucional/compa%C3%B1erismo/imagen_de_fondo_principal.jpeg" loading="lazy" alt=""></div>
@@ -857,6 +976,10 @@
     <div class="reel-row" title="Pasa el cursor para pausar">
       <div class="reel-track reel-track-p">
         <!-- copia 1 -->
+        <div class="reel-port"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" loading="lazy" alt="Alumna recibe diploma PNP"></div>
+        <div class="reel-port"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" loading="lazy" alt="Ingresante con diploma"></div>
+        <div class="reel-port"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_rapado_como_celebracion.jpeg" loading="lazy" alt="Ritual de egresado"></div>
+        <div class="reel-port"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma2.jpeg" loading="lazy" alt="Diploma ceremonia egresados"></div>
         <div class="reel-port"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-14%20at%2022.55.15%20%283%29.jpeg" loading="lazy" alt="Actividad física"></div>
         <div class="reel-port"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-14%20at%2022.55.15.jpeg" loading="lazy" alt="Preparación PNP"></div>
         <div class="reel-port"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-14%20at%2022.55.16%20%281%29.jpeg" loading="lazy" alt="Alumno Charly Táctico"></div>
@@ -875,6 +998,10 @@
         <div class="reel-port"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-15%20at%2000.00.46.jpeg" loading="lazy" alt="Alumno en formación"></div>
         <div class="reel-port"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-15%20at%2000.00.47.jpeg" loading="lazy" alt="Preparación táctica"></div>
         <!-- copia 2 para bucle infinito -->
+        <div class="reel-port"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma.jpeg" loading="lazy" alt=""></div>
+        <div class="reel-port"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_con_diploma.jpeg" loading="lazy" alt=""></div>
+        <div class="reel-port"><img src="./nueva_imagenes_videos_ceremonia/alumno_ingresante_rapado_como_celebracion.jpeg" loading="lazy" alt=""></div>
+        <div class="reel-port"><img src="./nueva_imagenes_videos_ceremonia/director_con_alumna_y_su_diploma2.jpeg" loading="lazy" alt=""></div>
         <div class="reel-port"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-14%20at%2022.55.15%20%283%29.jpeg" loading="lazy" alt=""></div>
         <div class="reel-port"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-14%20at%2022.55.15.jpeg" loading="lazy" alt=""></div>
         <div class="reel-port"><img src="./imagen_institucional/actividades/WhatsApp%20Image%202026-05-14%20at%2022.55.16%20%281%29.jpeg" loading="lazy" alt=""></div>
