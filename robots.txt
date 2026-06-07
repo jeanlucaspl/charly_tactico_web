@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /nueva_imagenes_videos_ceremonia/
+Disallow: /imagen_institucional/
+
+Sitemap: https://www.charlytacticotedax.com/sitemap.xml
