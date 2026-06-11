@@ -427,6 +427,14 @@
     .wa-fab:hover{transform:scale(1.1)}
     .wa-fab svg{width:32px;height:32px}
 
+    /* ── NAV MOBILE BTNS ── */
+    .nav-mobile-btns{display:none}
+    @media(max-width:900px){
+      .nav-mobile-btns{display:flex;align-items:center;gap:8px}
+      .nav-mob-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;color:var(--muted);border:1px solid rgba(201,168,76,.25);white-space:nowrap}
+      .nav-mob-intranet{background:var(--gold);color:#080c10!important;border-color:var(--gold)}
+    }
+
     /* ── RESPONSIVE ── */
     @media(max-width:1100px){
       .pp-grid{grid-template-columns:1fr 360px;gap:36px}
@@ -666,6 +674,10 @@
     <img src="./imagen_institucional/publicidad/propuesta_logo_charly.png" alt="Logo Charly Táctico TEDAX">
     <div class="nav-brand">Academia Pre-Cadetes<em>Charly Táctico TEDAX</em></div>
   </a>
+  <div class="nav-mobile-btns">
+    <a href="#noticias" class="nav-mob-btn">Noticias</a>
+    <a href="https://intranet-charly-tactico.vercel.app/?from=web" target="_blank" rel="noopener" class="nav-mob-btn nav-mob-intranet">Intranet</a>
+  </div>
   <div class="nav-links">
     <a href="#porque">Por Qué</a>
     <a href="#cursos">Cursos</a>
