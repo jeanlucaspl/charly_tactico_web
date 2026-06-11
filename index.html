@@ -602,6 +602,20 @@
       .stat-num{font-size:34px}
     }
 
+    /* ── PORTAL CTA ── */
+    .pp-portal-cta{text-align:center;margin-top:52px;padding-top:40px;border-top:1px solid rgba(201,168,76,.12)}
+    .pp-portal-sub{font-family:'Barlow Condensed',sans-serif;font-size:15px;color:var(--muted);margin-bottom:18px;letter-spacing:.04em}
+    .btn-portal{
+      display:inline-flex;align-items:center;gap:10px;
+      background:transparent;color:var(--gold);
+      border:2px solid var(--gold);padding:14px 36px;
+      font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.1em;
+      clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+      transition:background .2s,color .2s,transform .2s;
+    }
+    .btn-portal:hover{background:var(--gold);color:#080c10;transform:translateY(-3px)}
+    .pp-portal-hint{margin-top:12px;font-size:12px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em}
+
     /* ── NOTICIAS ── */
     #noticias{background:var(--dark2)}
     .not-filtros{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:36px}
@@ -657,6 +671,7 @@
     <a href="#cursos">Cursos</a>
     <a href="#horarios">Horarios</a>
     <a href="#exitos">Ingresantes</a>
+    <a href="#portal-padres">Portal</a>
     <a href="#galeria">Galería</a>
     <a href="#noticias">Noticias</a>
     <a href="#contacto">Contacto</a>
@@ -959,6 +974,16 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="pp-portal-cta fade-up">
+      <p class="pp-portal-sub">¿Ya eres alumno o padre de familia registrado?</p>
+      <a href="https://intranet-charly-tactico.vercel.app/" target="_blank" rel="noopener" class="btn-portal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/>
+        </svg>
+        Ingresar al Portal
+      </a>
+      <p class="pp-portal-hint">Acceso exclusivo para alumnos y padres registrados en la academia</p>
     </div>
   </div>
 </section>
